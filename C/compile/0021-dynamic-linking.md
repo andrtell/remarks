@@ -269,3 +269,28 @@ _man 1 ld_
     the environment variable "LD_RUN_PATH" will be used if it is defined.
 ```
 
+_man 8 ld.so_
+
+```
+LD_LIBRARY_PATH
+
+    A  list of directories in which to search for ELF libraries at execution time.
+
+    The items in the list are separated by either colons or semi‐colons,
+    and there is no support for escaping either separator.
+
+    A zero-length directory name indicates the current working directory.
+
+    This variable is ignored in secure-execution mode.
+
+    Within the pathnames specified in LD_LIBRARY_PATH, the dynamic linker expands
+    the tokens $ORIGIN, $LIB, and $PLATFORM (or the versions  using curly  braces  around  the  names)
+    as described above in Dynamic string tokens.
+
+    Thus, for example, the following would cause a library to be searched for in either the
+    lib or lib64 subdirectory below the directory containing the program to be executed:
+
+    $ LD_LIBRARY_PATH='$ORIGIN/$LIB' prog
+
+    (Note the use of single quotes, which prevent expansion of $ORIGIN and $LIB as shell variables!)
+```
