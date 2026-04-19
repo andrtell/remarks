@@ -142,11 +142,20 @@ Ok, lets try and run our executable `program`.
 
 Shoot! A third error. 
 
-It turns out that our executable `program` also need to provide the _runtime_ location of the shared object `libeasymath.so`.
+When our executable `program` runs it is up to the dynamic linker (`ld.so`) to _find_ and load any shared object files
+required by our program.
 
-This information is used by the runtime linker to load our shared object `libeasymath.so` (into memory) when our executable `program` runs.
+The first way to achieve this is to set the environment variable `LD_LIBRARY_PATH` to the location of our shared object
+file `libeasymath.so` before running our program. 
 
-We can fix this error by using the __`Wl,-rpath,`__ flag.
+```
+> LD_LIBRARY_PATH=$(pwd) ./program
+
+1 + 2 = 3
+```
+
+The second way to achieve this is to embedd the _runtime_ location of the shared object file `libeasymath.so` in the executable
+`program`. We can do this by using the __`Wl,-rpath,`__ flag during compilation.
 
 ```
 > export LIB_DIR=$(pwd)
