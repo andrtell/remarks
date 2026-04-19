@@ -154,7 +154,7 @@ file `libeasymath.so` before running our program.
 1 + 2 = 3
 ```
 
-A second way to do this is to embedd the _runtime_ location (dir) of the shared object file `libeasymath.so` in the executable
+A second way to do this is to embedd the _runtime_ directory of the shared object file `libeasymath.so` in the executable
 `program`. We can do this by using the __`Wl,-rpath,`__ flag during compilation.
 
 ```
