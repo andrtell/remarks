@@ -23,6 +23,8 @@ int easymath_add(int a, int b) {
 }
 ```
 
+### Creating a shared object file
+
 We are going to attempt to use our library by dynamically linking to it.
 
 To do that we need a shared object file `libeasymath.so`.
@@ -50,7 +52,9 @@ BuildID[sha1]=39fec9a5cb0e0b6d41f4407918906e17ba18b192, not stripped
 
 Great! We have our shared object file `libeasymath.so`.
 
-We also need to write a program that makes use of the function `easymath_add` in our library.
+### Using the library in a program
+
+Lets write a program that makes use of the function `easymath_add` in our library.
 
 `./program.c`
 
@@ -77,7 +81,9 @@ compilation terminated.
 
 Oh no! An error. The compiler complains it can not find the header file `easymath.h`.
 
-We can fix this error by using the __`-I`__ flag to specifiy the directory of the header file `easymath.h`.
+### Locating the header files
+
+We can fix the previous error by using the __`-I`__ flag to specifiy the directory of the header file `easymath.h`.
 
 ```
 > export LIB_DIR=$(pwd)  # <- this is new.
@@ -92,6 +98,8 @@ collect2: error: ld returned 1 exit status
 ```
 
 Dang! Another error. This time the linker complains it can't find the reference `easymath_add` in `main`.
+
+### Linking with our library
 
 The linker needs to know which shared object file provides `easymath_add` so it can record the dependency in the final executable `program`.
 
@@ -142,6 +150,8 @@ Ok, lets try and run our executable `program`.
 
 Shoot! A third error. 
 
+### Providing the runtime path of our library
+
 When our executable `program` runs it is up to the dynamic linker (`ld.so`) to _find_ and load any shared object files
 required by our program. I seems like the dynamic linker needs some help here.
 
@@ -191,4 +201,4 @@ Ok, looks good. Lets try it out.
 1 + 2 = 3
 ```
 
-It works. No environment variables needed.
+It works. No environment variables this time.
