@@ -179,7 +179,7 @@ A second way to do this is to embedd the _runtime_ directory of the shared objec
    	 -o program
 ```
 
-Fantastic! Lets check our executable `program` with `ldd` again (also using `readelf` here for kicks). 
+Fantastic! Lets check our executable `program` with `ldd` again. 
 
 ```
 > ldd ./program
@@ -188,10 +188,6 @@ linux-vdso.so.1 (0x00007ffa39d55000)
 libeasymath.so => /some/dir/libeasymath.so (0x00007ffa39d43000)
 libc.so.6 => /usr/lib/libc.so.6 (0x00007ffa39a00000)
 /lib64/ld-linux-x86-64.so.2 => /usr/lib64/ld-linux-x86-64.so.2 (0x00007ffa39d57000)
-
-> readelf -d program | grep RUNPATH
-
-0x000000000000001d (RUNPATH)            Library runpath: [/some/dir]
 ```
 
 Ok, looks good. Lets try it out.
