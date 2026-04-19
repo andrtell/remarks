@@ -151,7 +151,7 @@ Ok, lets try and run our executable `program`.
 
 Shoot! A third error. 
 
-### Providing the runtime path of our library
+### Add the shared object file to the runtime library search path
 
 When our executable `program` runs it is up to the dynamic linker (`ld.so`) to _find_ and load any shared object files
 required by our program. I seems like the dynamic linker needs some help here.
@@ -236,6 +236,18 @@ _man 1 gcc_
 -Ldir
 
     Add directory dir to the list of directories to be searched for -l.
+
+-l library
+
+    Search the library named library when linking.
+
+    The -l option is passed directly to the linker by GCC.  Refer to your linker documentation for
+    exact details.  The general description below applies to the GNU linker.
+
+    The linker searches a standard list of directories for the library.
+
+    The directories searched include several standard system directories plus
+    any that you specify with -L.
 
 -Wl,option
 
