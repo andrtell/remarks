@@ -52,7 +52,7 @@ BuildID[sha1]=39fec9a5cb0e0b6d41f4407918906e17ba18b192, not stripped
 
 Great! We have our shared object file `libeasymath.so`.
 
-### Using the library in a program
+### Making use of the library in a program.
 
 Lets write a program that makes use of the function `easymath_add` in our library.
 
@@ -81,7 +81,7 @@ compilation terminated.
 
 Oh no! An error. The compiler complains it can not find the header file `easymath.h`.
 
-### Locating the header files
+### Finding the header file(s)
 
 We can fix the previous error by using the __`-I`__ flag to specifiy the directory of the header file `easymath.h`.
 
@@ -99,7 +99,7 @@ collect2: error: ld returned 1 exit status
 
 Dang! Another error. This time the linker complains it can't find the reference `easymath_add` in `main`.
 
-### Linking with our library
+### Link a program with the shared object file
 
 The linker needs to know which shared object file provides `easymath_add` so it can record the dependency in the final executable `program`.
 
