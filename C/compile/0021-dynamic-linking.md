@@ -1,8 +1,8 @@
 # 2. Dynamic linking
 
-## 2.1 A tiny dynamically linked library
+## 2.1 Compiling and linking to a shared object file.
 
-Lets start by writing the source code for our example library __easymath__.
+Lets start by writing the code for a tiny example library __easymath__.
 
 `./easymath.h`
 
