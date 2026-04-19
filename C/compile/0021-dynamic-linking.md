@@ -77,7 +77,7 @@ compilation terminated.
 
 Oh no! An error. The compiler complains it can not find the header file `easymath.h`.
 
-We can fix this error by using the __`-I`__ flag to specifiy the location of the header file `easymath.h`.
+We can fix this error by using the __`-I`__ flag to specifiy the directory of the header file `easymath.h`.
 
 ```
 > export LIB_DIR=$(pwd)  # <- this is new.
@@ -95,7 +95,7 @@ Dang! Another error. This time the linker complains it can't find the reference 
 
 The linker needs to know which shared object file provides `easymath_add` so it can record the dependency in the final executable `program`.
 
-We can fix this error by using the __`-L`__ to specify the location of the shared object file `libeasymath.so`.
+We can fix this error by using the __`-L`__ to specify the directory of the shared object file `libeasymath.so`.
 
 We also need to use the __`-l`__ flag to tell the compiler to we wish to link our executable `program` with the shared object file `libeasymath.so`.
 
@@ -143,9 +143,9 @@ Ok, lets try and run our executable `program`.
 Shoot! A third error. 
 
 When our executable `program` runs it is up to the dynamic linker (`ld.so`) to _find_ and load any shared object files
-required by our program.
+required by our program. I seems like the dynamic linker needs some help here.
 
-The first way to achieve this is to set the environment variable `LD_LIBRARY_PATH` to the location of our shared object
+One way to do this is to set the environment variable `LD_LIBRARY_PATH` to the directory of our shared object
 file `libeasymath.so` before running our program. 
 
 ```
@@ -154,7 +154,7 @@ file `libeasymath.so` before running our program.
 1 + 2 = 3
 ```
 
-The second way to achieve this is to embedd the _runtime_ location of the shared object file `libeasymath.so` in the executable
+A second way to do this is to embedd the _runtime_ location (dir) of the shared object file `libeasymath.so` in the executable
 `program`. We can do this by using the __`Wl,-rpath,`__ flag during compilation.
 
 ```
@@ -168,21 +168,26 @@ The second way to achieve this is to embedd the _runtime_ location of the shared
    	 -o program
 ```
 
-Fantastic! Lets check our executable `program` with `ldd` again.
+Fantastic! Lets check our executable `program` with `ldd` again (also using `readelf` here for kicks). 
 
 ```
 > ldd ./program
 
 linux-vdso.so.1 (0x00007ffa39d55000)
-libeasymath.so => /home/bob/some/dir/libeasymath.so (0x00007ffa39d43000)
+libeasymath.so => /some/dir/libeasymath.so (0x00007ffa39d43000)
 libc.so.6 => /usr/lib/libc.so.6 (0x00007ffa39a00000)
 /lib64/ld-linux-x86-64.so.2 => /usr/lib64/ld-linux-x86-64.so.2 (0x00007ffa39d57000)
+
+> readelf -d program | grep RUNPATH
+
+0x000000000000001d (RUNPATH)            Library runpath: [/some/dir]
 ```
 
-Ok, looks good. Now lets run it.
+Ok, looks good. Lets try it out.
 
 ```
 > ./program
+
 1 + 2 = 3
 ```
 
