@@ -1,6 +1,6 @@
-# Dynamic linking
+# 2. Dynamic linking
 
-## 2.1 A Simple dynamically linked library
+## 2.1 A tiny dynamically linked library
 
 Lets start by writing the source code for our example library __easymath__.
 
