@@ -1,6 +1,6 @@
 # 2. Dynamic linking
 
-## 2.1 Compiling and linking to a shared object file.
+## 2.1 Compiling and linking to a shared object file
 
 Lets start by writing the code for a tiny example library __easymath__.
 
@@ -23,7 +23,7 @@ int easymath_add(int a, int b) {
 }
 ```
 
-### Compiling a shared object file.
+### 2.1.1 Compiling a shared object file
 
 We are going to use our tiny library easymath by dynamically linking to it.
 
@@ -52,7 +52,7 @@ BuildID[sha1]=39fec9a5cb0e0b6d41f4407918906e17ba18b192, not stripped
 
 Great! We have our shared object file `libeasymath.so`.
 
-### Making use of a shared object file in a program.
+### 2.2.2 Making use of a shared object file in a program
 
 Lets write a program that makes use of the function `easymath_add` in our library.
 
@@ -81,7 +81,7 @@ compilation terminated.
 
 Oh no! An error. The compiler complains it can not find the header file `easymath.h`.
 
-### Finding the header file.
+### 2.2.3 Finding the header file
 
 We can fix the previous error by using the __`-I`__ flag to specifiy the directory of the header file `easymath.h`.
 
@@ -99,7 +99,7 @@ collect2: error: ld returned 1 exit status
 
 Dang! Another error. This time the linker complains it can't find the reference `easymath_add` in `main`.
 
-### Link a program to a shared object file
+### 2.2.4 Link a program to a shared object file
 
 The linker needs to know which shared object file provides `easymath_add` so it can record the dependency in the final executable `program`.
 
@@ -151,7 +151,7 @@ Ok, lets try and run our executable `program`.
 
 Shoot! A third error. 
 
-### Add a shared object file to the runtime library search path
+### 2.2.5 Add a shared object file to the runtime library search path
 
 When our executable `program` runs it is up to the dynamic linker (`ld.so`) to _find_ and load any shared object files
 required by our program. I seems like the dynamic linker needs some help here.
@@ -200,7 +200,7 @@ Ok, looks good. Lets try it out.
 
 Success!
 
-## References
+## 2.2.6 References
 
 _man 1 gcc_
 
