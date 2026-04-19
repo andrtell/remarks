@@ -25,7 +25,7 @@ int easymath_add(int a, int b) {
 
 ### Compiling a shared object file.
 
-We are going to attempt to use our library by dynamically linking to it.
+We are going to use our tiny library easymath by dynamically linking to it.
 
 To do that we need a shared object file `libeasymath.so`.
 
@@ -81,7 +81,7 @@ compilation terminated.
 
 Oh no! An error. The compiler complains it can not find the header file `easymath.h`.
 
-### Finding the included header file(s).
+### Finding the header file.
 
 We can fix the previous error by using the __`-I`__ flag to specifiy the directory of the header file `easymath.h`.
 
