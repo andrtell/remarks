@@ -103,9 +103,10 @@ Dang! Another error. This time the linker complains it can't find the reference 
 
 The linker needs to know which shared object file provides `easymath_add` so it can record the dependency in the final executable `program`.
 
-We can fix this error by using the __`-L`__ to specify the directory of the shared object file `libeasymath.so`.
+To make this happen we first use the __`-l`__ flag to tell the compiler to link our executable `program` 
+with the shared object file `libeasymath.so`.
 
-We also need to use the __`-l`__ flag to tell the compiler to we wish to link our executable `program` with the shared object file `libeasymath.so`.
+We also need to use the __`-L`__ to specify the directory of the shared object file `libeasymath.so`.
 
 ```
 > export LIB_DIR=$(pwd)
